@@ -1,0 +1,79 @@
+/* =====================================================
+   VARIÁVEIS DE CSS (as cores e fontes do Wave)
+   Se quiser mudar uma cor do site, é só mudar aqui.
+   ===================================================== */
+
+/* Fontes (arquivos guardados na pasta fonts) */
+@font-face {
+  font-family: "Sora";
+  src: url("../fonts/sora-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 800;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/manrope-latin-wght-normal.woff2") format("woff2");
+  font-weight: 200 800;
+}
+
+/* TEMA ESCURO (é o padrão do site) */
+:root {
+  --fundo: #05070d;
+  --superficie: #0d1220;
+  --superficie-2: #141b2e;
+  --superficie-3: #1b2440;
+  --borda: #212b47;
+
+  --texto: #f3f6fc;
+  --texto-suave: #9aa6c2;
+  --texto-fraco: #6c7896;
+
+  --azul: #2459ee;
+  --azul-hover: #1f4bd1;
+  --ciano: #22d3ff;
+  --link: #6fdcff;
+  --foco: #6fdcff;
+  --brilho: rgba(36, 89, 238, 0.45);
+
+  --erro: #ff6b81;
+  --erro-fundo: rgba(255, 107, 129, 0.12);
+  --sucesso: #3be3a4;
+  --sucesso-fundo: rgba(59, 227, 164, 0.12);
+
+  --sombra: 0 18px 50px rgba(0, 0, 0, 0.55);
+
+  --fonte-titulo: "Sora", "Segoe UI", sans-serif;
+  --fonte-texto: "Manrope", "Segoe UI", sans-serif;
+
+  color-scheme: dark;
+}
+
+/* TEMA CLARO
+   Só troca os valores das variáveis. O resto do CSS continua igual.
+   Esse bloco só vale quando o <html> tem data-theme="light". */
+:root[data-theme="light"] {
+  --fundo: #f4f7fd;
+  --superficie: #ffffff;
+  --superficie-2: #eaf0fb;
+  --superficie-3: #dde7f7;
+  --borda: #cfdaee;
+
+  --texto: #0a1020;
+  --texto-suave: #4a5775;
+  --texto-fraco: #7a86a3;
+
+  --azul: #1f4bd1;
+  --azul-hover: #1a3fb3;
+  --ciano: #0a6cff;
+  --link: #1a3fb3;
+  --foco: #0a6cff;
+  --brilho: rgba(36, 89, 238, 0.22);
+
+  --erro: #c4123a;
+  --erro-fundo: rgba(196, 18, 58, 0.08);
+  --sucesso: #0b8a5a;
+  --sucesso-fundo: rgba(11, 138, 90, 0.1);
+
+  --sombra: 0 18px 50px rgba(20, 40, 100, 0.16);
+
+  color-scheme: light;
+}
