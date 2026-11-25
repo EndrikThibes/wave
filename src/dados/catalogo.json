@@ -1,0 +1,736 @@
+{
+ "artistas": [
+  {
+   "id": "michael-jackson",
+   "nome": "Michael Jackson",
+   "generos": [
+    "Pop"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Michael_Jackson_1983_%283x4_cropped%29_%28contrast%29.jpg/500px-Michael_Jackson_1983_%283x4_cropped%29_%28contrast%29.jpg",
+   "bio": "Cantor, compositor e dançarino norte-americano, conhecido como o Rei do Pop. Thriller, de 1982, é um dos discos mais vendidos da história."
+  },
+  {
+   "id": "queen",
+   "nome": "Queen",
+   "generos": [
+    "Rock"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg/500px-Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg",
+   "bio": "Banda britânica formada em Londres em 1970, com Freddie Mercury, Brian May, Roger Taylor e John Deacon. Mistura rock, ópera e muito show."
+  },
+  {
+   "id": "daft-punk",
+   "nome": "Daft Punk",
+   "generos": [
+    "Eletrônica"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Daft_Punk_in_2013.jpg/500px-Daft_Punk_in_2013.jpg",
+   "bio": "Dupla francesa de música eletrônica, formada em Paris em 1993. Ficou famosa pelos capacetes de robô e por levar o french house para o mundo."
+  },
+  {
+   "id": "nujabes",
+   "nome": "Nujabes",
+   "generos": [
+    "Lo-Fi",
+    "Hip Hop"
+   ],
+   "foto": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/79/7e/a1/797ea11f-b90c-c4c5-f874-6a6ccd2c22a7/HPD5.jpg/500x500bb.jpg",
+   "bio": "Produtor e DJ japonês que misturou jazz e hip hop em batidas calmas. Suas músicas viraram trilha para estudar, e uma delas abre o anime Samurai Champloo.",
+   "creditoFoto": "Capa do álbum Modal Soul"
+  },
+  {
+   "id": "emicida",
+   "nome": "Emicida",
+   "generos": [
+    "Hip Hop"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Emicida_Festival_Sensacional_2020_%28cropped%29.jpg/500px-Emicida_Festival_Sensacional_2020_%28cropped%29.jpg",
+   "bio": "Rapper, cantor e compositor paulistano. Une rima, samba e crônica social, e é um dos nomes mais importantes do hip hop brasileiro."
+  },
+  {
+   "id": "marilia-mendonca",
+   "nome": "Marília Mendonça",
+   "generos": [
+    "Sertanejo"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Marilia_Mendonca_Pecuaria_de_Goiania_2018_2.jpg/500px-Marilia_Mendonca_Pecuaria_de_Goiania_2018_2.jpg",
+   "bio": "Cantora e compositora goiana, a Rainha da Sofrência. Escreveu sucessos para outros artistas antes de virar uma das maiores vozes do sertanejo."
+  },
+  {
+   "id": "djavan",
+   "nome": "Djavan",
+   "generos": [
+    "MPB"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Djavan_San_Javier_Jazz_2023_26_%28cropped%29.jpg/500px-Djavan_San_Javier_Jazz_2023_26_%28cropped%29.jpg",
+   "bio": "Cantor, compositor e violonista alagoano. Seu estilo mistura MPB, jazz e ritmos brasileiros, com letras cheias de imagens do mar e do amor."
+  },
+  {
+   "id": "anitta",
+   "nome": "Anitta",
+   "generos": [
+    "Pop",
+    "Funk"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/27th_Latin_GRAMMY_Awards_-_Red_Carpet_0163-_Anitta_%28cropped%29.jpg/500px-27th_Latin_GRAMMY_Awards_-_Red_Carpet_0163-_Anitta_%28cropped%29.jpg",
+   "bio": "Cantora e empresária carioca. Começou no funk e levou o pop brasileiro para o mundo, cantando em português, inglês e espanhol."
+  },
+  {
+   "id": "miles-davis",
+   "nome": "Miles Davis",
+   "generos": [
+    "Jazz"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Miles_Davis_by_Palumbo_cropped.jpg/500px-Miles_Davis_by_Palumbo_cropped.jpg",
+   "bio": "Trompetista e compositor norte-americano, uma das figuras mais influentes do jazz. Kind of Blue, de 1959, é um dos discos de jazz mais vendidos de todos os tempos."
+  },
+  {
+   "id": "arctic-monkeys",
+   "nome": "Arctic Monkeys",
+   "generos": [
+    "Indie",
+    "Rock"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Arctic_Monkeys_-_Orange_Stage_-_Roskilde_Festival_2014.jpg/500px-Arctic_Monkeys_-_Orange_Stage_-_Roskilde_Festival_2014.jpg",
+   "bio": "Banda de rock indie de Sheffield, na Inglaterra, liderada por Alex Turner. Ficou conhecida cedo, quando suas músicas se espalharam pela internet."
+  },
+  {
+   "id": "beethoven",
+   "nome": "Ludwig van Beethoven",
+   "generos": [
+    "Clássica"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Beethoven.jpg/500px-Beethoven.jpg",
+   "bio": "Compositor e pianista alemão do século XIX, ponte entre o classicismo e o romantismo. Seguiu compondo obras-primas mesmo depois de ficar surdo."
+  },
+  {
+   "id": "bob-marley",
+   "nome": "Bob Marley",
+   "generos": [
+    "Reggae"
+   ],
+   "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Bob_Marley_1976_press_photo.jpg/500px-Bob_Marley_1976_press_photo.jpg",
+   "bio": "Cantor e compositor jamaicano, o maior nome do reggae. Suas músicas falam de paz, união e esperança e são cantadas no mundo todo."
+  }
+ ],
+ "faixas": [
+  {
+   "id": "mj-beat-it",
+   "titulo": "Beat It",
+   "artistaId": "michael-jackson",
+   "album": "Thriller",
+   "genero": "Pop",
+   "duracao": 258,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/4f/fd/324ffda2-9e51-8f6a-0c2d-c6fd2b41ac55/074643811224.jpg",
+   "video": [
+    "oRdxUFDoQe0",
+    "kOn-HdEg6AQ"
+   ]
+  },
+  {
+   "id": "mj-billie-jean",
+   "titulo": "Billie Jean",
+   "artistaId": "michael-jackson",
+   "album": "Thriller",
+   "genero": "Pop",
+   "duracao": 294,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/4f/fd/324ffda2-9e51-8f6a-0c2d-c6fd2b41ac55/074643811224.jpg",
+   "video": [
+    "Zi_XLOBDo_Y",
+    "Kr4EQDVETuA"
+   ]
+  },
+  {
+   "id": "mj-thriller",
+   "titulo": "Thriller",
+   "artistaId": "michael-jackson",
+   "album": "Thriller",
+   "genero": "Pop",
+   "duracao": 358,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/4f/fd/324ffda2-9e51-8f6a-0c2d-c6fd2b41ac55/074643811224.jpg",
+   "video": [
+    "BIBpeA1szPM",
+    "sOnqjkJTMaA"
+   ]
+  },
+  {
+   "id": "mj-smooth-criminal",
+   "titulo": "Smooth Criminal",
+   "artistaId": "michael-jackson",
+   "album": "The Essential Michael Jackson",
+   "genero": "Pop",
+   "duracao": 259,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3d/9d/38/3d9d3811-71f0-3a0e-1ada-3004e56ff852/827969428726.jpg",
+   "video": [
+    "_mMyPJSx8RU",
+    "h_D3VFfhvs4"
+   ]
+  },
+  {
+   "id": "queen-bohemian-rhapsody",
+   "titulo": "Bohemian Rhapsody",
+   "artistaId": "queen",
+   "album": "Bohemian Rhapsody (Trilha Sonora)",
+   "genero": "Rock",
+   "duracao": 355,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/62/2e/97/622e97c4-d620-2ae1-2a47-a32e16a01492/602567988847.jpg",
+   "video": [
+    "fJ9rUzIMcZQ",
+    "LlPcnOjSByU"
+   ]
+  },
+  {
+   "id": "queen-dont-stop-me-now",
+   "titulo": "Don't Stop Me Now",
+   "artistaId": "queen",
+   "album": "Jazz",
+   "genero": "Rock",
+   "duracao": 210,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9e/ae/4a/9eae4a23-130a-4ed7-d590-bfa701f9acaf/602527717685.jpg",
+   "video": [
+    "HgzGwKwLmgM",
+    "MHi9mKq0slA"
+   ]
+  },
+  {
+   "id": "queen-another-one",
+   "titulo": "Another One Bites the Dust",
+   "artistaId": "queen",
+   "album": "Bohemian Rhapsody (Trilha Sonora)",
+   "genero": "Rock",
+   "duracao": 215,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/62/2e/97/622e97c4-d620-2ae1-2a47-a32e16a01492/602567988847.jpg",
+   "video": [
+    "rY0WxgSXdEE",
+    "OdurVND-DSs"
+   ]
+  },
+  {
+   "id": "queen-under-pressure",
+   "titulo": "Under Pressure",
+   "artistaId": "queen",
+   "album": "The Platinum Collection",
+   "genero": "Rock",
+   "duracao": 237,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/15/c7/55/15c755bc-7603-3ce3-e243-e59f1f9863ea/602527724171.jpg",
+   "video": [
+    "a01QQZyl-_I",
+    "nbwn21TU4ec"
+   ]
+  },
+  {
+   "id": "daft-one-more-time",
+   "titulo": "One More Time",
+   "artistaId": "daft-punk",
+   "album": "Discovery",
+   "genero": "Eletrônica",
+   "duracao": 320,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fd/4a/77/fd4a77db-0ebc-d043-41a2-f32fa1bb0fb4/dj.qrikkdwj.jpg",
+   "video": [
+    "FGBhQbmPwH8",
+    "A2VpR8HahKc"
+   ]
+  },
+  {
+   "id": "daft-harder-better",
+   "titulo": "Harder, Better, Faster, Stronger",
+   "artistaId": "daft-punk",
+   "album": "Discovery",
+   "genero": "Eletrônica",
+   "duracao": 225,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fd/4a/77/fd4a77db-0ebc-d043-41a2-f32fa1bb0fb4/dj.qrikkdwj.jpg",
+   "video": [
+    "gAjR4_CbPpQ",
+    "yydNF8tuVmU"
+   ]
+  },
+  {
+   "id": "daft-get-lucky",
+   "titulo": "Get Lucky",
+   "artistaId": "daft-punk",
+   "album": "Get Lucky (Radio Edit)",
+   "genero": "Eletrônica",
+   "duracao": 248,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1c/da/5a/1cda5a7d-90ad-8643-efb2-7641afb13418/886443973442.jpg",
+   "video": [
+    "5NV6Rdv1a3I"
+   ]
+  },
+  {
+   "id": "daft-around-the-world",
+   "titulo": "Around the World",
+   "artistaId": "daft-punk",
+   "album": "Homework",
+   "genero": "Eletrônica",
+   "duracao": 430,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/34/8d/c7/348dc71c-d75e-9baf-671a-994e9e74b018/dj.pimdxdmf.jpg",
+   "video": [
+    "K0HSD_i2DvA",
+    "dwDns8x3Jb4"
+   ]
+  },
+  {
+   "id": "nujabes-feather",
+   "titulo": "Feather",
+   "artistaId": "nujabes",
+   "album": "Kei Nishikori meets Nujabes",
+   "genero": "Lo-Fi",
+   "duracao": 176,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ad/18/6b/ad186b39-cd19-fa4d-abe0-bf6860cd8d9d/POCS-30003_jkt.jpg",
+   "video": [
+    "hQ5x8pHoIPA",
+    "jfFTT3iz740"
+   ]
+  },
+  {
+   "id": "nujabes-aruarian-dance",
+   "titulo": "Aruarian Dance",
+   "artistaId": "nujabes",
+   "album": "Samurai Champloo Music Record: Departure",
+   "genero": "Lo-Fi",
+   "duracao": 250,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/be/59/2b/be592b54-496f-bd59-9e46-49fa2f45a717/VICL-61411.jpg",
+   "video": [
+    "qYcoJpqCha4",
+    "HkZ8BitJhvc"
+   ]
+  },
+  {
+   "id": "nujabes-luv-sic-3",
+   "titulo": "Luv(sic) Pt. 3",
+   "artistaId": "nujabes",
+   "album": "Luv(sic) Hexalogy",
+   "genero": "Hip Hop",
+   "duracao": 374,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/cf/cb/2b/cfcb2b72-c7a5-b4af-e227-46d341a3e3f2/Luv_sic_Hexjaket.jpg",
+   "video": [
+    "Fwv2gnCFDOc",
+    "mc_xD6aGV5w"
+   ]
+  },
+  {
+   "id": "nujabes-reflection-eternal",
+   "titulo": "Reflection Eternal",
+   "artistaId": "nujabes",
+   "album": "Modal Soul",
+   "genero": "Lo-Fi",
+   "duracao": 258,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/79/7e/a1/797ea11f-b90c-c4c5-f874-6a6ccd2c22a7/HPD5.jpg",
+   "video": [
+    "2wK27xW4OFI",
+    "GLGM8fxL020"
+   ]
+  },
+  {
+   "id": "emicida-amarelo",
+   "titulo": "AmarElo",
+   "artistaId": "emicida",
+   "album": "AmarElo",
+   "genero": "Hip Hop",
+   "duracao": 321,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/fa/31/c9/fa31c924-89f5-233a-a0aa-fcec6d84e77f/886447809419.jpg",
+   "video": [
+    "uJcjV6g5mV8",
+    "91bikd4bWOs"
+   ]
+  },
+  {
+   "id": "emicida-boa-esperanca",
+   "titulo": "Boa Esperança",
+   "artistaId": "emicida",
+   "album": "Sobre Crianças, Quadris, Pesadelos e Lições de Casa...",
+   "genero": "Hip Hop",
+   "duracao": 183,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/28/e0/1e/28e01e52-cac3-145b-07a4-b1d986bf80ad/193483923642.jpg",
+   "video": [
+    "s96Xp0EmfDw",
+    "Qa4EzzCzkuc"
+   ]
+  },
+  {
+   "id": "emicida-passarinhos",
+   "titulo": "Passarinhos",
+   "artistaId": "emicida",
+   "album": "Sobre Crianças, Quadris, Pesadelos e Lições de Casa...",
+   "genero": "Hip Hop",
+   "duracao": 222,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/b4/19/d4/b419d426-d6d7-023f-b2e0-af82489756a0/193483859767.jpg",
+   "video": [
+    "JwQXW7fNeV8",
+    "IJcmLHjjAJ4"
+   ]
+  },
+  {
+   "id": "emicida-mufete",
+   "titulo": "Mufete",
+   "artistaId": "emicida",
+   "album": "Sobre Crianças, Quadris, Pesadelos e Lições de Casa...",
+   "genero": "Hip Hop",
+   "duracao": 239,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/28/e0/1e/28e01e52-cac3-145b-07a4-b1d986bf80ad/193483923642.jpg",
+   "video": [
+    "zypOpcW62T8",
+    "0EldFej_bKg"
+   ]
+  },
+  {
+   "id": "marilia-infiel",
+   "titulo": "Infiel",
+   "artistaId": "marilia-mendonca",
+   "album": "Marília Mendonça (Ao Vivo)",
+   "genero": "Sertanejo",
+   "duracao": 202,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1e/68/40/1e684061-025d-60a4-28d6-16cb4e0b37b7/7891430399023.jpg",
+   "video": [
+    "eCyMh-mZ1B0",
+    "lWv-Mm8xKig"
+   ]
+  },
+  {
+   "id": "marilia-supera",
+   "titulo": "Supera",
+   "artistaId": "marilia-mendonca",
+   "album": "Todos os Cantos, Vol. 3 (Ao Vivo)",
+   "genero": "Sertanejo",
+   "duracao": 148,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/28/88/8a/28888ad9-7027-56d0-2094-66c5c8e91021/7891430413873.jpg",
+   "video": [
+    "7fMttPxpcmg"
+   ]
+  },
+  {
+   "id": "marilia-todo-mundo-vai-sofrer",
+   "titulo": "Todo Mundo Vai Sofrer",
+   "artistaId": "marilia-mendonca",
+   "album": "Todos os Cantos, Vol. 2 (Ao Vivo)",
+   "genero": "Sertanejo",
+   "duracao": 155,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/02/50/58/025058b0-d15e-041e-7b27-f88705e44c14/7891430385873.jpg",
+   "video": [
+    "ILADw1aretk",
+    "aDSYWns0mfY"
+   ]
+  },
+  {
+   "id": "marilia-eu-sei-de-cor",
+   "titulo": "Eu Sei de Cor",
+   "artistaId": "marilia-mendonca",
+   "album": "Agora É Que São Elas (Acústico)",
+   "genero": "Sertanejo",
+   "duracao": 175,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9f/1b/6b/9f1b6b0e-3ff7-d727-f79a-46d35e59d8f9/7891430121877.jpg",
+   "video": [
+    "2QTCKfVN1ZE",
+    "N1uym-QODZk"
+   ]
+  },
+  {
+   "id": "djavan-oceano",
+   "titulo": "Oceano",
+   "artistaId": "djavan",
+   "album": "Djavan",
+   "genero": "MPB",
+   "duracao": 296,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/56/8e/30/568e3096-1a3d-2822-2a47-ebaa47d59752/884977966497.jpg",
+   "video": [
+    "P-lxOj0XpEE",
+    "MWh78SM5G7k"
+   ]
+  },
+  {
+   "id": "djavan-flor-de-lis",
+   "titulo": "Flor de Lis",
+   "artistaId": "djavan",
+   "album": "A Voz e o Violão",
+   "genero": "MPB",
+   "duracao": 225,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/fd/23/3d/fd233dfa-51de-4111-a063-25e3fe51c56b/dj.vzveqtxn.jpg",
+   "video": [
+    "k55L6LGS_Ns",
+    "peR8eOcGA3M"
+   ]
+  },
+  {
+   "id": "djavan-sina",
+   "titulo": "Sina",
+   "artistaId": "djavan",
+   "album": "Luz",
+   "genero": "MPB",
+   "duracao": 332,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a1/7e/31/a17e31a0-1969-6d81-4e6c-6eb4e9492d73/5099747630224.jpg",
+   "video": [
+    "5siQ-ml5lqY",
+    "Kh5xptrsbi4"
+   ]
+  },
+  {
+   "id": "djavan-se",
+   "titulo": "Se...",
+   "artistaId": "djavan",
+   "album": "Coisa de Acender",
+   "genero": "MPB",
+   "duracao": 292,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/3d/7c/53/3d7c53c9-ae35-7209-52a5-fe524cc533f8/884977966381.jpg",
+   "video": [
+    "pn4FYf8lRpo",
+    "ZSZyth38-zk"
+   ]
+  },
+  {
+   "id": "anitta-vai-malandra",
+   "titulo": "Vai Malandra",
+   "artistaId": "anitta",
+   "album": "Vai Malandra (Single)",
+   "genero": "Funk",
+   "duracao": 202,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3d/11/25/3d1125ea-a6c7-9baa-02aa-bf772033493a/190296939372.jpg",
+   "video": [
+    "kDhptBT_-VI"
+   ]
+  },
+  {
+   "id": "anitta-show-das-poderosas",
+   "titulo": "Show das Poderosas",
+   "artistaId": "anitta",
+   "album": "Anitta",
+   "genero": "Funk",
+   "duracao": 151,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/d2/b7/f3/d2b7f329-e79f-33ea-7d0a-1bfa5c245e18/825646428915.jpg",
+   "video": [
+    "FGViL3CYRwg",
+    "YWFCcltlH4U"
+   ]
+  },
+  {
+   "id": "anitta-bang",
+   "titulo": "Bang",
+   "artistaId": "anitta",
+   "album": "Bang",
+   "genero": "Pop",
+   "duracao": 191,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/25/82/b1/2582b1a7-0982-7daa-9c07-565b524b7170/825646005178.jpg",
+   "video": [
+    "UGov-KH7hkM",
+    "45-Dbpo_D-U"
+   ]
+  },
+  {
+   "id": "anitta-envolver",
+   "titulo": "Envolver",
+   "artistaId": "anitta",
+   "album": "Envolver (Single)",
+   "genero": "Pop",
+   "duracao": 194,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c5/ba/2b/c5ba2b96-ff06-5f58-35ad-1c070973cee7/190296362989.jpg",
+   "video": [
+    "hFCjGiawJi4"
+   ]
+  },
+  {
+   "id": "miles-so-what",
+   "titulo": "So What",
+   "artistaId": "miles-davis",
+   "album": "Kind of Blue",
+   "genero": "Jazz",
+   "duracao": 563,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/8c/41/ef/8c41efae-a00f-84cf-9d6f-465bb0fc2f66/dj.aacpwrsd.jpg",
+   "video": [
+    "ylXk1LBvIqU",
+    "zqNTltOGh5c"
+   ]
+  },
+  {
+   "id": "miles-blue-in-green",
+   "titulo": "Blue in Green",
+   "artistaId": "miles-davis",
+   "album": "Kind of Blue",
+   "genero": "Jazz",
+   "duracao": 338,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/8c/41/ef/8c41efae-a00f-84cf-9d6f-465bb0fc2f66/dj.aacpwrsd.jpg",
+   "video": [
+    "TLDflhhdPCg",
+    "btg4BREPFto"
+   ]
+  },
+  {
+   "id": "miles-all-blues",
+   "titulo": "All Blues",
+   "artistaId": "miles-davis",
+   "album": "Kind of Blue",
+   "genero": "Jazz",
+   "duracao": 693,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/8c/41/ef/8c41efae-a00f-84cf-9d6f-465bb0fc2f66/dj.aacpwrsd.jpg",
+   "video": [
+    "-488UORrfJ0"
+   ]
+  },
+  {
+   "id": "miles-freddie-freeloader",
+   "titulo": "Freddie Freeloader",
+   "artistaId": "miles-davis",
+   "album": "Kind of Blue",
+   "genero": "Jazz",
+   "duracao": 586,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/8c/41/ef/8c41efae-a00f-84cf-9d6f-465bb0fc2f66/dj.aacpwrsd.jpg",
+   "video": [
+    "ZZcuSBouhVA",
+    "F-SuJ3bLkLI"
+   ]
+  },
+  {
+   "id": "arctic-do-i-wanna-know",
+   "titulo": "Do I Wanna Know?",
+   "artistaId": "arctic-monkeys",
+   "album": "AM",
+   "genero": "Indie",
+   "duracao": 272,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/9c/b5/699cb5d6-115c-ff73-9d26-e57ea4350d72/887828031795.png",
+   "video": [
+    "bpOSxM0rNPM",
+    "1tWFk8ojF4M"
+   ]
+  },
+  {
+   "id": "arctic-r-u-mine",
+   "titulo": "R U Mine?",
+   "artistaId": "arctic-monkeys",
+   "album": "AM",
+   "genero": "Indie",
+   "duracao": 202,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/29/f5/6f/29f56fb2-4735-947b-f63a-2801294719cb/am_am_itunes_bonus_v2.jpg",
+   "video": [
+    "VQH8ZTgna3Q",
+    "voH0S0e01vs"
+   ]
+  },
+  {
+   "id": "arctic-505",
+   "titulo": "505",
+   "artistaId": "arctic-monkeys",
+   "album": "Favourite Worst Nightmare",
+   "genero": "Indie",
+   "duracao": 254,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/46/84/1f468438-c8ff-6c7c-d790-7d9ad31a55b6/dj.ofwxjvjm.jpg",
+   "video": [
+    "CKI8iQTgZKU",
+    "MrmPDUvKyLs"
+   ]
+  },
+  {
+   "id": "arctic-why-youd-only-call-me",
+   "titulo": "Why'd You Only Call Me When You're High?",
+   "artistaId": "arctic-monkeys",
+   "album": "AM",
+   "genero": "Rock",
+   "duracao": 161,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a1/ed/a7/a1eda740-f49a-fd6e-9fb1-d38f49f606cf/887828049066.png",
+   "video": [
+    "6366dxFf-Os",
+    "XdAMCngf9uY"
+   ]
+  },
+  {
+   "id": "beethoven-fur-elise",
+   "titulo": "Für Elise",
+   "artistaId": "beethoven",
+   "album": "Beethoven: Für Elise",
+   "genero": "Clássica",
+   "duracao": 217,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/df/70/04/df700435-0f23-c5d2-48b6-15cc7d37dbfa/06UMGIM37915.rgb.jpg",
+   "video": [
+    "PtwFOOOoGlo",
+    "htkFIckCFqs"
+   ]
+  },
+  {
+   "id": "beethoven-moonlight",
+   "titulo": "Sonata ao Luar (1º movimento)",
+   "artistaId": "beethoven",
+   "album": "Piano Sonatas",
+   "genero": "Clássica",
+   "duracao": 445,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/21/66/e8/2166e8dd-ceb9-8d5f-8726-c08550be2b22/15UMGIM07859.rgb.jpg",
+   "video": [
+    "sbTVZMJ9Z2I",
+    "5GOE3w2ZUrQ"
+   ]
+  },
+  {
+   "id": "beethoven-sinfonia-5",
+   "titulo": "Sinfonia nº 5 (1º movimento)",
+   "artistaId": "beethoven",
+   "album": "Sinfonias nº 5 e 6",
+   "genero": "Clássica",
+   "duracao": 442,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/94/58/f2/9458f2e8-ea9d-b384-6a52-6d976d5ebc9c/00028943900423.rgb.jpg",
+   "video": [
+    "LibOP5yt0TY",
+    "9aDEq3u5huA"
+   ]
+  },
+  {
+   "id": "beethoven-sinfonia-9",
+   "titulo": "Sinfonia nº 9 (Ode à Alegria)",
+   "artistaId": "beethoven",
+   "album": "Sinfonia nº 9",
+   "genero": "Clássica",
+   "duracao": 1437,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ed/59/49/ed594956-37ab-bc8c-2a12-72a7041e7eb0/196874232804.jpg",
+   "video": [
+    "fzyO3fLV5O0",
+    "-kcOpyM9cBg"
+   ]
+  },
+  {
+   "id": "marley-three-little-birds",
+   "titulo": "Three Little Birds",
+   "artistaId": "bob-marley",
+   "album": "Legend",
+   "genero": "Reggae",
+   "duracao": 181,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/c2/0d/3cc20dcc-8f4e-f060-36dd-7de52a7ec8fe/12UMGIM14712.rgb.jpg",
+   "video": [
+    "HNBCVM4KbUM",
+    "NOyRsPDPfMM"
+   ]
+  },
+  {
+   "id": "marley-one-love",
+   "titulo": "One Love / People Get Ready",
+   "artistaId": "bob-marley",
+   "album": "Legend",
+   "genero": "Reggae",
+   "duracao": 172,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/c2/0d/3cc20dcc-8f4e-f060-36dd-7de52a7ec8fe/12UMGIM14712.rgb.jpg",
+   "video": [
+    "IN0KkGeEURw",
+    "0Tgl0Ok2Pjg"
+   ]
+  },
+  {
+   "id": "marley-is-this-love",
+   "titulo": "Is This Love",
+   "artistaId": "bob-marley",
+   "album": "Kaya",
+   "genero": "Reggae",
+   "duracao": 232,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/52/1a/d4/521ad4e3-9c00-39ad-b5ae-6fc2f144bf98/06UMGIM11277.rgb.jpg",
+   "video": [
+    "69RdQFDuYPI",
+    "co2FK0WbXX0"
+   ]
+  },
+  {
+   "id": "marley-redemption-song",
+   "titulo": "Redemption Song",
+   "artistaId": "bob-marley",
+   "album": "Legend",
+   "genero": "Reggae",
+   "duracao": 227,
+   "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/c2/0d/3cc20dcc-8f4e-f060-36dd-7de52a7ec8fe/12UMGIM14712.rgb.jpg",
+   "video": [
+    "yv5xonFSC4c"
+   ]
+  }
+ ]
+}

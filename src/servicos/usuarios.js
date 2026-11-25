@@ -1,0 +1,147 @@
+import {
+  ler,
+  gravar,
+  remover,
+  lerTexto,
+  gravarTexto,
+  lerSessaoTemporaria,
+  gravarSessaoTemporaria,
+  removerSessaoTemporaria
+} from "./armazenamento.js";
+import { protegerSenha, conferirSenha } from "./senha.js";
+
+const CHAVE_USUARIOS = "wave:usuarios";
+const CHAVE_SESSAO = "wave:sessao";
+const PREFIXO_DADOS = "wave:dados:";
+
+export const ID_VISITANTE = "visitante";
+
+export const VISITANTE = {
+  id: ID_VISITANTE,
+  nome: "Visitante",
+  email: "",
+  generos: [],
+  visitante: true
+};
+
+export const CONTA_DEMO = {
+  nome: "Endrik",
+  email: "demo@wave.com",
+  senha: "Wave1234",
+  generos: ["Pop", "Lo-Fi", "Indie"]
+};
+
+export function pegarUsuarios() {
+  return ler(CHAVE_USUARIOS, []);
+}
+
+export function buscarPorEmail(email) {
+  const procurado = email.trim().toLowerCase();
+  return pegarUsuarios().find((u) => u.email.toLowerCase() === procurado) || null;
+}
+
+export function buscarPorId(id) {
+  if (id === ID_VISITANTE) {
+    return VISITANTE;
+  }
+  return pegarUsuarios().find((u) => u.id === id) || null;
+}
+
+export async function criarUsuario(dados) {
+  const protecao = await protegerSenha(dados.senha);
+  const usuario = {
+    id: "u" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    nome: dados.nome.trim(),
+    email: dados.email.trim(),
+    sal: protecao.sal,
+    hash: protecao.hash,
+    generos: dados.generos,
+    criadoEm: new Date().toISOString(),
+    consentimentoEm: new Date().toISOString()
+  };
+  const lista = pegarUsuarios();
+  lista.push(usuario);
+  gravar(CHAVE_USUARIOS, lista);
+  return usuario;
+}
+
+export async function conferirLogin(email, senha) {
+  const usuario = buscarPorEmail(email);
+  if (usuario === null) {
+    return null;
+  }
+  const certa = await conferirSenha(senha, usuario.sal, usuario.hash);
+  return certa ? usuario : null;
+}
+
+export async function redefinirSenha(email, novaSenha) {
+  const lista = pegarUsuarios();
+  const posicao = lista.findIndex((u) => u.email.toLowerCase() === email.trim().toLowerCase());
+  if (posicao === -1) {
+    return false;
+  }
+  const protecao = await protegerSenha(novaSenha);
+  lista[posicao].sal = protecao.sal;
+  lista[posicao].hash = protecao.hash;
+  gravar(CHAVE_USUARIOS, lista);
+  return true;
+}
+
+export function atualizarUsuario(id, mudancas) {
+  const lista = pegarUsuarios();
+  const posicao = lista.findIndex((u) => u.id === id);
+  if (posicao === -1) {
+    return null;
+  }
+  lista[posicao] = { ...lista[posicao], ...mudancas };
+  gravar(CHAVE_USUARIOS, lista);
+  return lista[posicao];
+}
+
+export function excluirUsuario(id) {
+  const lista = pegarUsuarios().filter((u) => u.id !== id);
+  gravar(CHAVE_USUARIOS, lista);
+  remover(PREFIXO_DADOS + id);
+  if (lerTexto(CHAVE_SESSAO) === id) {
+    remover(CHAVE_SESSAO);
+  }
+}
+
+export function iniciarSessao(id, lembrar = true) {
+  encerrarSessao();
+  if (lembrar) {
+    gravarTexto(CHAVE_SESSAO, id);
+  } else {
+    gravarSessaoTemporaria(CHAVE_SESSAO, id);
+  }
+}
+
+export function encerrarSessao() {
+  remover(CHAVE_SESSAO);
+  removerSessaoTemporaria(CHAVE_SESSAO);
+}
+
+export function usuarioDaSessao() {
+  const id = lerSessaoTemporaria(CHAVE_SESSAO) || lerTexto(CHAVE_SESSAO);
+  if (id === null) {
+    return null;
+  }
+  return buscarPorId(id);
+}
+
+export function lerDadosDoUsuario(id) {
+  const padrao = { curtidas: [], playlists: [], historico: [], reproducoes: {} };
+  return { ...padrao, ...ler(PREFIXO_DADOS + id, padrao) };
+}
+
+export function gravarDadosDoUsuario(id, dados) {
+  gravar(PREFIXO_DADOS + id, dados);
+}
+
+export function removerDadosDoUsuario(id) {
+  remover(PREFIXO_DADOS + id);
+}
+
+export function temConteudo(dados) {
+  return dados.curtidas.length > 0 || dados.playlists.length > 0 || dados.historico.length > 0;
+}
