@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Dialogo from "../componentes/Dialogo.jsx";
+import CamposPlaylist from "../componentes/CamposPlaylist.jsx";
 import Icone from "../componentes/Icone.jsx";
 import Imagem from "../componentes/Imagem.jsx";
 import ListaFaixas from "../componentes/ListaFaixas.jsx";
@@ -15,6 +16,7 @@ export default function Biblioteca() {
   const { mostrar } = useAviso();
   const [criando, setCriando] = useState(false);
   const [nome, setNome] = useState("");
+  const [publica, setPublica] = useState(false);
   const [erro, setErro] = useState("");
 
   const maisTocadas = Object.keys(biblioteca.reproducoes)
@@ -30,15 +32,16 @@ export default function Biblioteca() {
   function fechar() {
     setCriando(false);
     setNome("");
+    setPublica(false);
     setErro("");
   }
 
   function criar(evento) {
     evento.preventDefault();
-    const resultado = biblioteca.criarPlaylist(nome);
+    const resultado = biblioteca.criarPlaylist(nome, null, publica);
     if (resultado.erro !== "") {
       setErro(resultado.erro);
-      document.getElementById("nome-playlist").focus();
+      document.getElementById("criar-playlist-nome").focus();
       return;
     }
     mostrar("Playlist " + resultado.playlist.nome + " criada.");
@@ -81,7 +84,9 @@ export default function Biblioteca() {
                       nome={playlist.nome}
                     />
                     <span className="cartao-titulo">{playlist.nome}</span>
-                    <span className="cartao-sub">{playlist.faixas.length} músicas</span>
+                    <span className="cartao-sub">
+                      {playlist.publica ? "Pública" : "Privada"} · {playlist.faixas.length} músicas
+                    </span>
                   </Link>
                 </li>
               );
@@ -135,26 +140,17 @@ export default function Biblioteca() {
 
       <Dialogo aberto={criando} aoFechar={fechar} titulo="Criar playlist">
         <form className="formulario" onSubmit={criar} noValidate>
-          <div className="campo">
-            <label htmlFor="nome-playlist">Nome da playlist</label>
-            <input
-              id="nome-playlist"
-              value={nome}
-              maxLength={60}
-              aria-invalid={erro ? "true" : "false"}
-              aria-describedby={erro ? "nome-playlist-erro" : undefined}
-              className={erro ? "input-erro" : undefined}
-              onChange={(evento) => {
-                setNome(evento.target.value);
-                setErro("");
-              }}
-            />
-            {erro && (
-              <p className="mensagem-erro" id="nome-playlist-erro" role="alert">
-                {erro}
-              </p>
-            )}
-          </div>
+          <CamposPlaylist
+            idBase="criar-playlist"
+            nome={nome}
+            aoMudarNome={(valor) => {
+              setNome(valor);
+              setErro("");
+            }}
+            erro={erro}
+            publica={publica}
+            aoMudarPublica={setPublica}
+          />
           <div className="dialogo-acoes">
             <button type="button" className="botao botao-borda" onClick={fechar}>
               Cancelar

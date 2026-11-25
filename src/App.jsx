@@ -18,6 +18,11 @@ const Biblioteca = lazy(() => import("./paginas/Biblioteca.jsx"));
 const Playlist = lazy(() => import("./paginas/Playlist.jsx"));
 const Artista = lazy(() => import("./paginas/Artista.jsx"));
 const Configuracoes = lazy(() => import("./paginas/Configuracoes.jsx"));
+const Perfil = lazy(() => import("./paginas/Perfil.jsx"));
+const Planos = lazy(() => import("./paginas/Planos.jsx"));
+const PlanoAtivado = lazy(() => import("./paginas/PlanoAtivado.jsx"));
+const Suporte = lazy(() => import("./paginas/Suporte.jsx"));
+const Album = lazy(() => import("./paginas/Album.jsx"));
 const NaoEncontrada = lazy(() => import("./paginas/NaoEncontrada.jsx"));
 
 function RotaPrivada() {
@@ -38,7 +43,7 @@ function RotaPrivada() {
 
 function RotaPublica() {
   const { usuario } = useAuth();
-  if (usuario !== null && !usuario.visitante) {
+  if (usuario !== null) {
     return <Navigate to="/inicio" replace />;
   }
   return <Outlet />;
@@ -64,7 +69,12 @@ export default function App() {
                   <Route path="/biblioteca" element={<Biblioteca />} />
                   <Route path="/playlist/:id" element={<Playlist />} />
                   <Route path="/artista/:id" element={<Artista />} />
+                  <Route path="/album/:id" element={<Album />} />
+                  <Route path="/perfil" element={<Perfil />} />
                   <Route path="/configuracoes" element={<Configuracoes />} />
+                  <Route path="/planos" element={<Planos />} />
+                  <Route path="/planos/ativado" element={<PlanoAtivado />} />
+                  <Route path="/suporte" element={<Suporte />} />
                 </Route>
                 <Route path="/" element={<Navigate to="/inicio" replace />} />
                 <Route path="*" element={<NaoEncontrada />} />

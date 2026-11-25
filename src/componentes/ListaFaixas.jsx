@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Imagem from "./Imagem.jsx";
 import Icone from "./Icone.jsx";
 import BotaoCurtir from "./BotaoCurtir.jsx";
@@ -37,7 +38,9 @@ export default function ListaFaixas({ ids, acaoExtra, rotuloLista }) {
                 <span className="faixa-artista">{artista.nome}</span>
               </span>
             </button>
-            <span className="faixa-album">{faixa.album}</span>
+            <Link className="faixa-album" to={"/album/" + faixa.albumId}>
+              {faixa.album}
+            </Link>
             <span className="faixa-acoes">
               <BotaoCurtir faixaId={id} />
               <BotaoAdicionar faixaId={id} />

@@ -12,7 +12,7 @@ export default function BotaoAdicionar({ faixaId }) {
       <button
         type="button"
         className="botao-icone"
-        aria-label={"Adicionar " + titulo + " a uma playlist"}
+        aria-label={"Salvar " + titulo + " em uma playlist"}
         onClick={() => setAberto(true)}
       >
         <Icone nome="mais" />

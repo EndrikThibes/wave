@@ -43,7 +43,6 @@ export default function Cadastro() {
   const [generos, setGeneros] = useState([]);
   const [salvando, setSalvando] = useState(false);
   const [contaCriada, setContaCriada] = useState(null);
-  const [trouxeBiblioteca, setTrouxeBiblioteca] = useState(false);
   const tituloRef = useRef(null);
   const primeiraVez = useRef(true);
 
@@ -94,8 +93,7 @@ export default function Cadastro() {
       senha: formulario.valores.senha,
       generos: lista
     });
-    setContaCriada(resultado.conta);
-    setTrouxeBiblioteca(resultado.trouxeBiblioteca);
+    setContaCriada(resultado);
     setSalvando(false);
     setEtapa(3);
   }
@@ -243,9 +241,6 @@ export default function Cadastro() {
                   ? "Já montamos a sua onda com base nos seus gostos."
                   : "Você pode escolher seus gêneros depois, em Ajustes."}
               </p>
-              {trouxeBiblioteca && (
-                <p className="subtitulo">Suas curtidas e playlists de visitante foram trazidas para esta conta.</p>
-              )}
             </div>
             {contaCriada.generos.length > 0 && (
               <ul className="tags" aria-label="Gêneros escolhidos">

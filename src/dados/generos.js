@@ -10,7 +10,10 @@ export const GENEROS = [
   { nome: "Jazz", cor: "#3b82f6" },
   { nome: "Indie", cor: "#14b8a6" },
   { nome: "Clássica", cor: "#a78bfa" },
-  { nome: "Reggae", cor: "#84cc16" }
+  { nome: "Reggae", cor: "#84cc16" },
+  { nome: "Trap", cor: "#e879f9" },
+  { nome: "Bossa Nova", cor: "#fbbf24" },
+  { nome: "Pagode", cor: "#f97316" }
 ];
 
 export function corDoGenero(nome) {
@@ -30,21 +33,21 @@ export const ONDAS = [
     id: "energia",
     nome: "Energia",
     descricao: "Para treinar e levantar o astral",
-    generos: ["Rock", "Funk", "Eletrônica"],
+    generos: ["Rock", "Pop", "Eletrônica", "Trap"],
     cores: ["#ff3d6e", "#f5b82e"]
   },
   {
     id: "calma",
     nome: "Calma",
     descricao: "Para desacelerar no fim do dia",
-    generos: ["MPB", "Reggae", "Sertanejo"],
+    generos: ["MPB", "Reggae", "Bossa Nova", "Pagode", "Sertanejo"],
     cores: ["#14b8a6", "#84cc16"]
   },
   {
     id: "rua",
     nome: "Rua",
     descricao: "Batida forte e letra afiada",
-    generos: ["Hip Hop", "Pop", "Indie"],
+    generos: ["Hip Hop", "Trap", "Funk"],
     cores: ["#8b7bff", "#ff4d8d"]
   }
 ];

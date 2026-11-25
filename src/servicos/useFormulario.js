@@ -53,10 +53,14 @@ export function useFormulario(valoresIniciais, regras, dependentes) {
     return primeiro === null;
   }
 
+  function definirErro(campo, mensagem) {
+    setErros({ ...erros, [campo]: mensagem });
+  }
+
   function limpar() {
     setValores(valoresIniciais);
     setErros({});
   }
 
-  return { valores, erros, mudar, sair, validarTudo, limpar };
+  return { valores, erros, mudar, sair, validarTudo, definirErro, limpar };
 }

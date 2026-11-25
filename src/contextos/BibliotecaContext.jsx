@@ -38,7 +38,7 @@ export function BibliotecaProvider({ children }) {
     return true;
   }
 
-  function criarPlaylist(nome, faixaInicial) {
+  function criarPlaylist(nome, faixaInicial, publica = false) {
     const nomes = dados.playlists.map((p) => p.nome);
     const erro = validarNomePlaylist(nome, nomes);
     if (erro !== "") {
@@ -48,19 +48,20 @@ export function BibliotecaProvider({ children }) {
       id: "p" + Date.now().toString(36),
       nome: nome.trim(),
       faixas: faixaInicial ? [faixaInicial] : [],
+      publica,
       criadaEm: new Date().toISOString()
     };
     salvar({ ...dados, playlists: [...dados.playlists, playlist] });
     return { erro: "", playlist };
   }
 
-  function renomearPlaylist(id, nome) {
+  function editarPlaylist(id, nome, publica) {
     const outros = dados.playlists.filter((p) => p.id !== id).map((p) => p.nome);
     const erro = validarNomePlaylist(nome, outros);
     if (erro !== "") {
       return erro;
     }
-    const playlists = dados.playlists.map((p) => (p.id === id ? { ...p, nome: nome.trim() } : p));
+    const playlists = dados.playlists.map((p) => (p.id === id ? { ...p, nome: nome.trim(), publica } : p));
     salvar({ ...dados, playlists });
     return "";
   }
@@ -121,7 +122,7 @@ export function BibliotecaProvider({ children }) {
     estaCurtida,
     alternarCurtida,
     criarPlaylist,
-    renomearPlaylist,
+    editarPlaylist,
     excluirPlaylist,
     adicionarNaPlaylist,
     removerDaPlaylist,

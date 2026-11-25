@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import Dialogo from "../componentes/Dialogo.jsx";
+import CamposPlaylist from "../componentes/CamposPlaylist.jsx";
 import Icone from "../componentes/Icone.jsx";
 import ListaFaixas from "../componentes/ListaFaixas.jsx";
 import { useBiblioteca } from "../contextos/BibliotecaContext.jsx";
@@ -21,6 +22,7 @@ export default function Playlist() {
 
   const [editando, setEditando] = useState(false);
   const [nome, setNome] = useState("");
+  const [publica, setPublica] = useState(false);
   const [erro, setErro] = useState("");
   const [excluindo, setExcluindo] = useState(false);
 
@@ -32,20 +34,21 @@ export default function Playlist() {
 
   function abrirEdicao() {
     setNome(playlist.nome);
+    setPublica(Boolean(playlist.publica));
     setErro("");
     setEditando(true);
   }
 
   function renomear(evento) {
     evento.preventDefault();
-    const mensagem = biblioteca.renomearPlaylist(playlist.id, nome);
+    const mensagem = biblioteca.editarPlaylist(playlist.id, nome, publica);
     if (mensagem !== "") {
       setErro(mensagem);
-      document.getElementById("renomear-playlist").focus();
+      document.getElementById("editar-playlist-nome").focus();
       return;
     }
     setEditando(false);
-    mostrar("Playlist renomeada.");
+    mostrar("Playlist atualizada.");
   }
 
   function excluir() {
@@ -74,7 +77,7 @@ export default function Playlist() {
       </p>
       <header className="cabecalho-pagina">
         <div>
-          <p className="rotulo">Playlist</p>
+          <p className="rotulo">{playlist.publica ? "Playlist pública" : "Playlist privada"}</p>
           <h1 className="titulo-pagina">{playlist.nome}</h1>
           <p className="dica">
             {playlist.faixas.length} músicas{playlist.faixas.length > 0 && " · " + formatarTempo(segundos)}
@@ -93,7 +96,7 @@ export default function Playlist() {
           )}
           <button type="button" className="botao botao-borda" onClick={abrirEdicao}>
             <Icone nome="editar" tamanho={18} />
-            Renomear
+            Editar playlist
           </button>
           <button type="button" className="botao botao-perigo" onClick={() => setExcluindo(true)}>
             <Icone nome="lixeira" tamanho={18} />
@@ -128,34 +131,25 @@ export default function Playlist() {
         />
       )}
 
-      <Dialogo aberto={editando} aoFechar={() => setEditando(false)} titulo="Renomear playlist">
+      <Dialogo aberto={editando} aoFechar={() => setEditando(false)} titulo="Editar playlist">
         <form className="formulario" onSubmit={renomear} noValidate>
-          <div className="campo">
-            <label htmlFor="renomear-playlist">Novo nome</label>
-            <input
-              id="renomear-playlist"
-              value={nome}
-              maxLength={60}
-              aria-invalid={erro ? "true" : "false"}
-              aria-describedby={erro ? "renomear-playlist-erro" : undefined}
-              className={erro ? "input-erro" : undefined}
-              onChange={(evento) => {
-                setNome(evento.target.value);
-                setErro("");
-              }}
-            />
-            {erro && (
-              <p className="mensagem-erro" id="renomear-playlist-erro" role="alert">
-                {erro}
-              </p>
-            )}
-          </div>
+          <CamposPlaylist
+            idBase="editar-playlist"
+            nome={nome}
+            aoMudarNome={(valor) => {
+              setNome(valor);
+              setErro("");
+            }}
+            erro={erro}
+            publica={publica}
+            aoMudarPublica={setPublica}
+          />
           <div className="dialogo-acoes">
             <button type="button" className="botao botao-borda" onClick={() => setEditando(false)}>
               Cancelar
             </button>
             <button type="submit" className="botao botao-azul">
-              Salvar nome
+              Salvar alterações
             </button>
           </div>
         </form>

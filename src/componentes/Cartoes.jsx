@@ -55,3 +55,14 @@ export function CartaoOnda({ onda, aoTocar }) {
     </button>
   );
 }
+
+export function CartaoAlbum({ album, mostrarArtista = true }) {
+  const artista = artistaPorId(album.artistaId);
+  return (
+    <Link to={"/album/" + album.id} className="cartao">
+      <Imagem src={imagemDaCapa(album, 300)} largura={200} altura={200} className="cartao-foto" nome={album.titulo} />
+      <span className="cartao-titulo">{album.titulo}</span>
+      <span className="cartao-sub">{mostrarArtista ? artista.nome : [album.ano, album.tipo].filter(Boolean).join(" · ")}</span>
+    </Link>
+  );
+}

@@ -2,9 +2,23 @@ import dados from "./catalogo.json";
 
 const MAPA_FAIXAS = new Map(dados.faixas.map((f) => [f.id, f]));
 const MAPA_ARTISTAS = new Map(dados.artistas.map((a) => [a.id, a]));
+const MAPA_ALBUNS = new Map(dados.albuns.map((a) => [a.id, a]));
 
 export const ARTISTAS = dados.artistas;
 export const FAIXAS = dados.faixas;
+export const ALBUNS = dados.albuns;
+
+export function albumPorId(id) {
+  return MAPA_ALBUNS.get(id);
+}
+
+export function albunsDoArtista(artistaId) {
+  return ALBUNS.filter((a) => a.artistaId === artistaId);
+}
+
+export function faixasDoAlbum(albumId) {
+  return FAIXAS.filter((f) => f.albumId === albumId);
+}
 
 export function faixaPorId(id) {
   return MAPA_FAIXAS.get(id);
@@ -74,6 +88,15 @@ export function buscarFaixas(termo, genero) {
     }
     const artista = artistaPorId(faixa.artistaId);
     return combina(termo, [faixa.titulo, faixa.album, artista.nome, faixa.genero].join(" "));
+  });
+}
+
+export function buscarAlbuns(termo, genero) {
+  return ALBUNS.filter((album) => {
+    if (genero && album.genero !== genero) {
+      return false;
+    }
+    return combina(termo, album.titulo + " " + artistaPorId(album.artistaId).nome);
   });
 }
 

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Icone from "../componentes/Icone.jsx";
 import ListaFaixas from "../componentes/ListaFaixas.jsx";
-import { CartaoArtista, CartaoFaixa } from "../componentes/Cartoes.jsx";
-import { buscarArtistas, buscarFaixas } from "../dados/catalogo.js";
+import { CartaoAlbum, CartaoArtista, CartaoFaixa } from "../componentes/Cartoes.jsx";
+import { buscarAlbuns, buscarArtistas, buscarFaixas } from "../dados/catalogo.js";
 import { GENEROS } from "../dados/generos.js";
 import { useTitulo } from "../servicos/useTitulo.js";
 
@@ -37,8 +37,9 @@ export default function Buscar() {
     atualizar(termo, nome === genero ? "" : nome);
   }
 
-  const faixas = tipo === "artistas" ? [] : buscarFaixas(termo, genero);
-  const artistas = tipo === "musicas" ? [] : buscarArtistas(termo, genero);
+  const faixas = tipo === "tudo" || tipo === "musicas" ? buscarFaixas(termo, genero) : [];
+  const artistas = tipo === "tudo" || tipo === "artistas" ? buscarArtistas(termo, genero) : [];
+  const albuns = tipo === "tudo" || tipo === "albuns" ? buscarAlbuns(termo, genero) : [];
   const temTermo = termo.trim() !== "";
   const melhor = temTermo && tipo === "tudo" ? (artistas.length > 0 ? { artista: artistas[0] } : faixas.length > 0 ? { faixa: faixas[0] } : null) : null;
   const semFiltro = termo.trim() === "" && genero === "";
@@ -66,7 +67,8 @@ export default function Buscar() {
         {[
           ["tudo", "Tudo"],
           ["musicas", "Músicas"],
-          ["artistas", "Artistas"]
+          ["artistas", "Artistas"],
+          ["albuns", "Álbuns"]
         ].map(([valor, rotulo]) => (
           <button
             key={valor}
@@ -97,10 +99,10 @@ export default function Buscar() {
       </div>
 
       <p className="so-leitor" role="status" aria-live="polite">
-        {faixas.length} músicas e {artistas.length} artistas encontrados.
+        {faixas.length} músicas, {artistas.length} artistas e {albuns.length} álbuns encontrados.
       </p>
 
-      {faixas.length === 0 && artistas.length === 0 ? (
+      {faixas.length === 0 && artistas.length === 0 && albuns.length === 0 ? (
         <div className="vazio">
           <Icone nome="buscar" tamanho={40} />
           <h2>Nada encontrado</h2>
@@ -128,9 +130,12 @@ export default function Buscar() {
           )}
           {artistas.filter((artista) => !melhor || melhor.artista !== artista).length > 0 && (
             <section className="secao" aria-labelledby="titulo-artistas-busca">
-              <h2 id="titulo-artistas-busca">{semFiltro ? "Todos os artistas" : "Artistas"}</h2>
+              <h2 id="titulo-artistas-busca">{semFiltro ? "Artistas em destaque" : "Artistas"}</h2>
               <ul className="grade">
-                {artistas.filter((artista) => !melhor || melhor.artista !== artista).map((artista) => (
+                {artistas
+                  .filter((artista) => !melhor || melhor.artista !== artista)
+                  .slice(0, semFiltro ? 12 : undefined)
+                  .map((artista) => (
                   <li key={artista.id}>
                     <CartaoArtista artista={artista} />
                   </li>
@@ -138,10 +143,25 @@ export default function Buscar() {
               </ul>
             </section>
           )}
+          {albuns.length > 0 && (
+            <section className="secao" aria-labelledby="titulo-albuns-busca">
+              <h2 id="titulo-albuns-busca">{semFiltro ? "Álbuns em destaque" : "Álbuns"}</h2>
+              <ul className="grade">
+                {(semFiltro ? albuns.slice(0, 12) : albuns).map((album) => (
+                  <li key={album.id}>
+                    <CartaoAlbum album={album} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           {faixas.length > 0 && (
             <section className="secao" aria-labelledby="titulo-musicas-busca">
-              <h2 id="titulo-musicas-busca">Músicas</h2>
-              <ListaFaixas ids={faixas.map((f) => f.id)} rotuloLista="Resultados da busca" />
+              <h2 id="titulo-musicas-busca">{semFiltro ? "Músicas em destaque" : "Músicas"}</h2>
+              <ListaFaixas
+                ids={(semFiltro ? faixas.slice(0, 20) : faixas).map((f) => f.id)}
+                rotuloLista="Resultados da busca"
+              />
             </section>
           )}
         </>

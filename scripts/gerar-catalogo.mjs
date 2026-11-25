@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const ITUNES = "https://is1-ssl.mzstatic.com/image/thumb/";
 const WIKI = "https://upload.wikimedia.org/wikipedia/commons/thumb/";
@@ -22,8 +22,7 @@ const artistas = [
   {
     id: "nujabes", nome: "Nujabes", generos: ["Lo-Fi", "Hip Hop"],
     foto: ITUNES + "Music125/v4/79/7e/a1/797ea11f-b90c-c4c5-f874-6a6ccd2c22a7/HPD5.jpg/500x500bb.jpg",
-    bio: "Produtor e DJ japonês que misturou jazz e hip hop em batidas calmas. Suas músicas viraram trilha para estudar, e uma delas abre o anime Samurai Champloo.",
-    creditoFoto: "Capa do álbum Modal Soul"
+    bio: "Produtor e DJ japonês que misturou jazz e hip hop em batidas calmas. Suas músicas viraram trilha para estudar, e uma delas abre o anime Samurai Champloo."
   },
   {
     id: "emicida", nome: "Emicida", generos: ["Hip Hop"],
@@ -174,5 +173,84 @@ const faixas = [
   f("marley-redemption-song", "Redemption Song", "bob-marley", "Legend", "Reggae", 227, "legend", ["yv5xonFSC4c"])
 ];
 
-writeFileSync(new URL("../src/dados/catalogo.json", import.meta.url), JSON.stringify({ artistas, faixas }, null, 1));
-console.log(artistas.length + " artistas, " + faixas.length + " faixas");
+const lerJson = (nome) => JSON.parse(readFileSync(new URL(nome, import.meta.url), "utf8"));
+const novos = lerJson("./novos-artistas.json");
+const bios = lerJson("./bios.json");
+const videos = lerJson("./videos-novos.json");
+
+const slug = (texto) =>
+  texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+function limparAlbum(nome) {
+  let tipo = "Álbum";
+  let titulo = nome;
+  if (/ - Single$/.test(titulo) || /\(Single\)$/.test(titulo)) {
+    tipo = "Single";
+  } else if (/ - EP$/.test(titulo)) {
+    tipo = "EP";
+  }
+  titulo = titulo
+    .replace(/ - (Single|EP)$/, "")
+    .replace(/ \(Single\)$/, "")
+    .replace(/ - The Paradise Edition$/, "")
+    .replace(/ \((Deluxe Edition|Deluxe|Deluxe Version|Bonus Tracks Edition|Edição Comemorativa)\)/g, "");
+  return { titulo, tipo };
+}
+
+const albuns = new Map();
+
+function registrarAlbum(artistaId, nomeAlbum, ano, capa, genero) {
+  const { titulo, tipo } = limparAlbum(nomeAlbum);
+  const id = slug(artistaId + " " + titulo);
+  if (!albuns.has(id)) {
+    albuns.set(id, { id, titulo, artistaId, ano, tipo, capa, genero });
+  }
+  return { id, titulo };
+}
+
+for (const faixa of faixas) {
+  const album = registrarAlbum(faixa.artistaId, faixa.album, "", faixa.capa, faixa.genero);
+  faixa.albumId = album.id;
+  faixa.album = album.titulo;
+}
+
+let indice = 0;
+for (const [artistaId, nome, genero, foto, lista] of novos) {
+  const capaPrincipal = ITUNES + lista[0][4];
+  const arquivo = foto ? foto.split("/").pop() : "";
+  artistas.push({
+    id: artistaId,
+    nome,
+    generos: [genero],
+    foto: foto ? WIKI + foto + "/500px-" + arquivo : capaPrincipal + "/600x600bb.jpg",
+    bio: bios[artistaId]
+  });
+  for (const [titulo, nomeAlbum, ano, duracao, capa] of lista) {
+    const ids = videos[indice] || [];
+    indice++;
+    if (ids.length === 0) {
+      continue;
+    }
+    const album = registrarAlbum(artistaId, nomeAlbum, ano, ITUNES + capa, genero);
+    faixas.push({
+      id: slug(artistaId + " " + titulo),
+      titulo,
+      artistaId,
+      album: album.titulo,
+      albumId: album.id,
+      genero,
+      duracao,
+      capa: ITUNES + capa,
+      video: ids
+    });
+  }
+}
+
+const dados = { artistas, albuns: [...albuns.values()], faixas };
+writeFileSync(new URL("../src/dados/catalogo.json", import.meta.url), JSON.stringify(dados));
+console.log(artistas.length + " artistas, " + dados.albuns.length + " álbuns, " + faixas.length + " faixas");

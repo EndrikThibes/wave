@@ -5,12 +5,24 @@ import Cabecalho, { NavegacaoInferior } from "./Cabecalho.jsx";
 import BarraPlayer from "./BarraPlayer.jsx";
 import PainelPlayer from "./PainelPlayer.jsx";
 import { usePlayer } from "../contextos/PlayerContext.jsx";
+import { useAuth } from "../contextos/AuthContext.jsx";
+import { preferenciasDe } from "../servicos/usuarios.js";
 
 export default function Layout() {
   const local = useLocation();
   const player = usePlayer();
   const principal = useRef(null);
   const primeira = useRef(true);
+  const { usuario } = useAuth();
+  const reduzir = preferenciasDe(usuario).reduzirAnimacoes;
+
+  useEffect(() => {
+    if (reduzir) {
+      document.documentElement.dataset.movimento = "reduzido";
+    } else {
+      delete document.documentElement.dataset.movimento;
+    }
+  }, [reduzir]);
 
   useEffect(() => {
     if (primeira.current) {

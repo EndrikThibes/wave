@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Imagem from "./Imagem.jsx";
 import Icone from "./Icone.jsx";
 import BotaoCurtir from "./BotaoCurtir.jsx";
+import BotaoAdicionar from "./BotaoAdicionar.jsx";
 import { Progresso, Transporte, Volume } from "./ControlesPlayer.jsx";
 import { usePlayer } from "../contextos/PlayerContext.jsx";
 import { artistaPorId, imagemDaCapa } from "../dados/catalogo.js";
@@ -44,7 +45,10 @@ export default function BarraPlayer() {
           {identificacao}
         </button>
       )}
-      <BotaoCurtir faixaId={faixa.id} />
+      <span className="barra-botoes">
+        <BotaoCurtir faixaId={faixa.id} />
+        {largo && <BotaoAdicionar faixaId={faixa.id} />}
+      </span>
 
       {largo ? (
         <div className="barra-centro">

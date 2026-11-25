@@ -3,7 +3,8 @@ import Icone from "../componentes/Icone.jsx";
 import Imagem from "../componentes/Imagem.jsx";
 import ListaFaixas from "../componentes/ListaFaixas.jsx";
 import { usePlayer } from "../contextos/PlayerContext.jsx";
-import { artistaPorId, faixasDoArtista } from "../dados/catalogo.js";
+import { albunsDoArtista, artistaPorId, faixasDoArtista } from "../dados/catalogo.js";
+import { CartaoAlbum } from "../componentes/Cartoes.jsx";
 import { useTitulo } from "../servicos/useTitulo.js";
 import NaoEncontrada from "./NaoEncontrada.jsx";
 
@@ -33,7 +34,7 @@ export default function Artista() {
           <h1 className="titulo-pagina">{artista.nome}</h1>
           <p className="artista-bio">{artista.bio}</p>
           <p className="dica">
-            {artista.generos.join(" · ")} · {artista.creditoFoto ? artista.creditoFoto : "Foto: Wikimedia Commons"}
+            {artista.generos.join(" · ")}
           </p>
           <button type="button" className="botao botao-azul" onClick={() => player.tocarLista(ids, ids[0])}>
             <Icone nome="play" tamanho={20} />
@@ -44,6 +45,16 @@ export default function Artista() {
       <section className="secao" aria-labelledby="titulo-populares">
         <h2 id="titulo-populares">Músicas</h2>
         <ListaFaixas ids={ids} rotuloLista={"Músicas de " + artista.nome} />
+      </section>
+      <section className="secao" aria-labelledby="titulo-albuns">
+        <h2 id="titulo-albuns">Álbuns</h2>
+        <ul className="grade">
+          {albunsDoArtista(artista.id).map((album) => (
+            <li key={album.id}>
+              <CartaoAlbum album={album} mostrarArtista={false} />
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );

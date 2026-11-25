@@ -470,6 +470,14 @@ button {
   }
 }
 
+:root[data-movimento="reduzido"] *,
+:root[data-movimento="reduzido"] *::before,
+:root[data-movimento="reduzido"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
 @media (max-width: 1099px) {
   .avisos {
     bottom: calc(var(--altura-player) + var(--altura-navegacao) + var(--espaco-3));
@@ -495,4 +503,58 @@ button {
   display: flex;
   flex-direction: column;
   gap: var(--espaco-2);
+}
+
+.opcao,
+.escolha-playlist {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  min-height: 52px;
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-1);
+  cursor: pointer;
+}
+
+.opcao:hover,
+.escolha-playlist:hover {
+  background: var(--superficie-2);
+}
+
+.opcao input,
+.escolha-playlist input {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  accent-color: var(--azul);
+}
+
+.opcao > span,
+.escolha-textos {
+  display: flex;
+  flex-direction: column;
+}
+
+.escolha-nome {
+  font-weight: 700;
+}
+
+.visibilidade {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.dialogo-faixa {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.dialogo-faixa .dialogo-texto {
+  margin: 0;
+  color: var(--texto);
+  font-weight: 700;
 }

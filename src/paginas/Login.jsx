@@ -15,7 +15,7 @@ const REGRAS = {
 
 export default function Login() {
   useTitulo("Entrar");
-  const { entrar, entrarComoDemonstracao, entrarComoVisitante } = useAuth();
+  const { entrar } = useAuth();
   const navegar = useNavigate();
   const local = useLocation();
   const destino = (local.state && local.state.de) || "/inicio";
@@ -45,17 +45,6 @@ export default function Login() {
       setFalhou(true);
       document.getElementById("senha").select();
     }
-  }
-
-  function usarSemConta() {
-    entrarComoVisitante();
-    navegar(destino, { replace: true });
-  }
-
-  async function usarDemonstracao() {
-    setEnviando(true);
-    await entrarComoDemonstracao();
-    navegar(destino, { replace: true });
   }
 
   return (
@@ -116,15 +105,6 @@ export default function Login() {
             <Link to="/recuperar">Recuperar senha</Link>
           </p>
         </form>
-        <div className="divisor">ou</div>
-        <div className="alternativas">
-          <button type="button" className="botao botao-borda botao-cheio" onClick={usarSemConta}>
-            Entrar sem conta
-          </button>
-          <button type="button" className="botao botao-borda botao-cheio" onClick={usarDemonstracao} disabled={enviando}>
-            Entrar com a conta de demonstração
-          </button>
-        </div>
         <p className="troca">
           Novo por aqui? <Link to="/cadastro">Criar conta grátis</Link>
         </p>

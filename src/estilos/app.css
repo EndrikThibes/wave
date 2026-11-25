@@ -905,9 +905,13 @@
 
 @media (max-width: 1099px) {
   .navegacao,
-  .botao-sair,
-  .cabecalho-acoes > a {
+  .so-largo {
     display: none;
+  }
+
+  .botao-planos {
+    min-height: 40px;
+    padding: 0 var(--espaco-3);
   }
 
   .painel-player {
@@ -1047,4 +1051,222 @@
 
 .melhor {
   max-width: 220px;
+}
+
+.perfil-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espaco-4);
+  padding: var(--espaco-4);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-2);
+  background: radial-gradient(circle at 0 0, var(--brilho), transparent 60%), var(--superficie);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 128px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--superficie-3);
+  color: var(--texto-suave);
+}
+
+.perfil-textos {
+  display: flex;
+  flex: 1 1 220px;
+  flex-direction: column;
+  gap: var(--espaco-1);
+}
+
+.perfil-nome {
+  font-size: var(--fs-destaque);
+}
+
+.perfil-numeros {
+  color: var(--texto-suave);
+}
+
+.selo-plano {
+  align-self: flex-start;
+  padding: var(--espaco-1) var(--espaco-3);
+  border: 1px solid var(--azul);
+  border-radius: var(--raio-pilula);
+  color: var(--texto);
+  font-size: var(--fs-apoio);
+  font-weight: 700;
+}
+
+.perfil-config {
+  align-self: flex-start;
+}
+
+.planos-topo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.grade-planos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--espaco-3);
+}
+
+.plano {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  height: 100%;
+  padding: var(--espaco-4);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-2);
+  background: var(--superficie);
+}
+
+.plano-atual {
+  border-color: var(--azul);
+  box-shadow: inset 0 0 0 1px var(--azul);
+}
+
+.plano-preco {
+  font-family: var(--fonte-titulo);
+  font-size: var(--fs-titulo);
+  font-weight: 700;
+}
+
+.plano-preco .dica {
+  font-family: var(--fonte-texto);
+  font-size: var(--fs-apoio);
+  font-weight: 400;
+}
+
+.plano-recursos {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  margin: var(--espaco-2) 0;
+}
+
+.plano-recursos li {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+}
+
+.plano-recursos svg {
+  flex: none;
+  color: var(--sucesso);
+}
+
+.plano-ativo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: var(--raio-pilula);
+  background: var(--superficie-3);
+  font-weight: 700;
+}
+
+.sucesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-3);
+  max-width: 560px;
+  margin: var(--espaco-5) auto 0;
+  text-align: center;
+}
+
+.sucesso-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--sucesso-fundo);
+  color: var(--sucesso);
+}
+
+.sucesso .acoes-linha {
+  justify-content: center;
+}
+
+.chamados {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.chamado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  padding: var(--espaco-3);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-1);
+  background: var(--superficie);
+}
+
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-1);
+  background: var(--superficie-2);
+  color: var(--texto);
+  font: inherit;
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+.album-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--espaco-4);
+}
+
+.album-topo > div {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espaco-2);
+}
+
+.album-capa {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--raio-1);
+  object-fit: cover;
+  box-shadow: var(--sombra);
+}
+
+@media (max-width: 480px) {
+  .album-capa {
+    width: 160px;
+    height: 160px;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.barra-botoes {
+  display: flex;
+  align-items: center;
 }

@@ -10,7 +10,8 @@ const LIGACOES = [
 ];
 
 export default function Cabecalho() {
-  const { usuario, sair } = useAuth();
+  const { usuario } = useAuth();
+  const gratis = !usuario.plano || usuario.plano === "gratis";
 
   return (
     <header className="cabecalho">
@@ -32,18 +33,18 @@ export default function Cabecalho() {
           </ul>
         </nav>
         <div className="cabecalho-acoes">
-          <BotaoTema />
-          <Link to="/configuracoes" className="botao-icone botao-contorno" aria-label={"Ajustes de " + usuario.nome}>
-            <Icone nome="usuario" />
-          </Link>
-          {usuario.visitante && (
-            <Link to="/cadastro" className="botao botao-azul botao-criar">
-              Criar conta
+          {gratis && (
+            <Link to="/planos" className="botao botao-azul botao-planos">
+              Ver planos
             </Link>
           )}
-          <button type="button" className="botao botao-borda botao-sair" onClick={sair}>
-            {usuario.visitante ? "Sair do modo visitante" : "Sair da conta"}
-          </button>
+          <BotaoTema />
+          <Link to="/configuracoes" className="botao-icone botao-contorno so-largo" aria-label="Configurações">
+            <Icone nome="config" />
+          </Link>
+          <Link to="/perfil" className="botao-icone botao-contorno so-largo" aria-label={"Perfil de " + usuario.nome}>
+            <Icone nome="usuario" />
+          </Link>
         </div>
       </div>
     </header>
@@ -63,9 +64,9 @@ export function NavegacaoInferior() {
           </li>
         ))}
         <li>
-          <NavLink to="/configuracoes" className="navegacao-inferior-link">
-            <Icone nome="config" />
-            <span>Ajustes</span>
+          <NavLink to="/perfil" className="navegacao-inferior-link">
+            <Icone nome="usuario" />
+            <span>Perfil</span>
           </NavLink>
         </li>
       </ul>

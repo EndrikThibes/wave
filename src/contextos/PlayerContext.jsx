@@ -4,6 +4,8 @@ import { carregarApiYoutube } from "../servicos/youtube.js";
 import { ler, gravar } from "../servicos/armazenamento.js";
 import { useBiblioteca } from "./BibliotecaContext.jsx";
 import { useAviso } from "./AvisoContext.jsx";
+import { useAuth } from "./AuthContext.jsx";
+import { preferenciasDe } from "../servicos/usuarios.js";
 
 const PlayerContext = createContext(null);
 
@@ -13,6 +15,8 @@ const CHAVE_PLAYER = "wave:player";
 export function PlayerProvider({ children }) {
   const biblioteca = useBiblioteca();
   const { mostrar } = useAviso();
+  const { usuario } = useAuth();
+  const ajustes = preferenciasDe(usuario);
   const preferencias = ler(CHAVE_PLAYER, { volume: 80, aleatorio: false, repetir: "nao" });
 
   const [fila, setFila] = useState([]);
@@ -101,6 +105,9 @@ export function PlayerProvider({ children }) {
     setProgresso(0);
     setDuracao(faixa.duracao);
     biblioteca.registrarNoHistorico(faixaId);
+    if (ajustes.avisarTroca) {
+      mostrar("Tocando agora: " + faixa.titulo + ", de " + artistaPorId(faixa.artistaId).nome + ".");
+    }
     try {
       const player = await criarPlayer();
       player.setVolume(volume);
@@ -242,8 +249,10 @@ export function PlayerProvider({ children }) {
       if (repetir === "um") {
         playerRef.current.seekTo(0, true);
         playerRef.current.playVideo();
-      } else {
+      } else if (ajustes.tocarProxima) {
         proxima(true);
+      } else {
+        setTocando(false);
       }
     }
   }

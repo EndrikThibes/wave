@@ -47,7 +47,7 @@ export default function Inicio() {
   return (
     <>
       <h1 className="titulo-pagina">
-        {usuario.visitante ? saudacao() : saudacao() + ", " + usuario.nome}
+        {saudacao()}, {usuario.nome}
       </h1>
 
       <section className="destaque" aria-labelledby="titulo-sua-onda">

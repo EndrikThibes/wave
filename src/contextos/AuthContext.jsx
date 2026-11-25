@@ -1,19 +1,13 @@
 import { createContext, useContext, useState } from "react";
 import {
-  CONTA_DEMO,
-  ID_VISITANTE,
-  VISITANTE,
   atualizarUsuario,
-  buscarPorEmail,
   conferirLogin,
   criarUsuario,
   encerrarSessao,
   excluirUsuario,
-  gravarDadosDoUsuario,
-  removerDadosDoUsuario,
-  temConteudo,
   iniciarSessao,
   lerDadosDoUsuario,
+  trocarSenha,
   usuarioDaSessao
 } from "../servicos/usuarios.js";
 
@@ -25,15 +19,7 @@ export function AuthProvider({ children }) {
   const [saiuAgora, setSaiuAgora] = useState(false);
 
   async function cadastrar(dados) {
-    const conta = await criarUsuario(dados);
-    const dadosVisitante = lerDadosDoUsuario(ID_VISITANTE);
-    let trouxeBiblioteca = false;
-    if (temConteudo(dadosVisitante)) {
-      gravarDadosDoUsuario(conta.id, dadosVisitante);
-      removerDadosDoUsuario(ID_VISITANTE);
-      trouxeBiblioteca = true;
-    }
-    return { conta, trouxeBiblioteca };
+    return criarUsuario(dados);
   }
 
   function iniciar(conta, lembrar = true) {
@@ -51,18 +37,6 @@ export function AuthProvider({ children }) {
     return true;
   }
 
-  async function entrarComoDemonstracao() {
-    let conta = buscarPorEmail(CONTA_DEMO.email);
-    if (conta === null) {
-      conta = await criarUsuario(CONTA_DEMO);
-    }
-    iniciar(conta, true);
-  }
-
-  function entrarComoVisitante() {
-    iniciar(VISITANTE, true);
-  }
-
   function sair() {
     encerrarSessao();
     setSaiuAgora(true);
@@ -72,6 +46,10 @@ export function AuthProvider({ children }) {
   function editarPerfil(mudancas) {
     const atualizado = atualizarUsuario(usuario.id, mudancas);
     setUsuario(atualizado);
+  }
+
+  async function mudarSenha(atual, nova) {
+    return trocarSenha(usuario.id, atual, nova);
   }
 
   function apagarConta() {
@@ -93,13 +71,12 @@ export function AuthProvider({ children }) {
   const valor = {
     usuario,
     saiuAgora,
-    entrarComoVisitante,
     cadastrar,
     iniciar,
     entrar,
-    entrarComoDemonstracao,
     sair,
     editarPerfil,
+    mudarSenha,
     apagarConta,
     exportarDados
   };

@@ -1,6 +1,7 @@
 import Imagem from "./Imagem.jsx";
 import Icone from "./Icone.jsx";
 import BotaoCurtir from "./BotaoCurtir.jsx";
+import BotaoAdicionar from "./BotaoAdicionar.jsx";
 import { Progresso, Transporte } from "./ControlesPlayer.jsx";
 import { usePlayer, ID_ALVO_VIDEO } from "../contextos/PlayerContext.jsx";
 import { artistaPorId, faixaPorId, imagemDaCapa } from "../dados/catalogo.js";
@@ -43,7 +44,10 @@ export default function PainelPlayer() {
               <p className="painel-artista">{artista.nome}</p>
               <p className="dica">{faixa.album}</p>
             </div>
-            <BotaoCurtir faixaId={faixa.id} />
+            <span className="barra-botoes">
+              <BotaoCurtir faixaId={faixa.id} />
+              <BotaoAdicionar faixaId={faixa.id} />
+            </span>
           </div>
 
           {!largo && (

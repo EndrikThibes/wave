@@ -39,12 +39,10 @@ export default function Privacidade() {
           Tudo fica apenas no armazenamento local (LocalStorage) do seu navegador, neste aparelho. O Wave não tem
           servidor, não envia seus dados a ninguém e não usa cookies de rastreamento ou de publicidade.
         </p>
-
-        <h2>Uso sem conta e “Lembrar de mim”</h2>
+        <h2>“Lembrar de mim”</h2>
         <p>
-          Você pode usar o Wave como visitante. Nesse caso, curtidas e playlists ficam salvas neste navegador e podem
-          ser levadas para uma conta se você se cadastrar depois. Se “Lembrar de mim” estiver desmarcado, a sessão
-          termina quando você fecha a aba.
+          Com “Lembrar de mim” marcado, a sessão continua neste navegador. Desmarcado, ela termina quando você fecha a
+          aba.
         </p>
 
         <h2>Para que usamos</h2>

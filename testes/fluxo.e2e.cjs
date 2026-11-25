@@ -36,24 +36,6 @@ function conferir(resultado, nome) {
     d.dismiss();
   });
 
-  await p.goto(base + "/login");
-  await p.getByLabel("E-mail").focus();
-  await p.keyboard.press("Tab");
-  await p.keyboard.press("Tab");
-  await p.keyboard.press("Tab");
-  await p.keyboard.press("Tab");
-  const focado = await p.evaluate(() => document.activeElement.textContent.trim());
-  conferir(focado === "Entrar na conta", "login: TAB vai de e-mail, senha e lembrar para Entrar");
-
-  await p.getByRole("button", { name: "Entrar sem conta" }).click();
-  await p.waitForURL("**/inicio");
-  conferir(await espera(async () => (await p.getByRole("heading", { level: 1 }).textContent()).startsWith("Bo")), "visitante entra sem conta");
-  await p.goto(base + "/buscar?q=arctc%20monkys");
-  conferir(await espera(async () => (await p.getByRole("heading", { name: "Melhor resultado" }).count()) === 1), "busca tolerante a erro de digitação");
-  await p.goto(base + "/buscar?q=beat");
-  await p.getByRole("button", { name: "Curtir Beat It" }).click();
-  conferir(await espera(async () => (await p.getByText(/foi para Músicas curtidas/).count()) > 0), "visitante curte música");
-
   await p.goto(base + "/cadastro");
   await p.getByRole("button", { name: /Continuar para os gêneros/ }).click();
   conferir(await espera(async () => (await p.getByRole("alert").count()) >= 1), "cadastro mostra erros na tela");
@@ -67,19 +49,23 @@ function conferir(resultado, nome) {
     await p.getByRole("button", { name: g, exact: true }).click();
   }
   await p.getByRole("button", { name: /Concluir cadastro/ }).click();
-  conferir(await espera(async () => (await p.getByText(/foram trazidas para esta conta/).count()) === 1), "biblioteca do visitante vai para a conta");
   await p.getByRole("button", { name: /Ir para o Wave/ }).click();
   await p.waitForURL("**/inicio");
   conferir(await espera(async () => (await p.title()).startsWith("Início")), "título da aba muda por página");
   const usuarios = await p.evaluate(() => localStorage.getItem("wave:usuarios"));
   conferir(!usuarios.includes("Wave1234"), "senha não fica em texto puro");
 
+  await p.goto(base + "/buscar?q=arctc%20monkys");
+  conferir(await espera(async () => (await p.getByRole("heading", { name: "Melhor resultado" }).count()) === 1), "busca tolerante a erro de digitação");
   await p.goto(base + "/buscar?q=beat");
-  await p.getByRole("button", { name: /Adicionar Beat It a uma playlist/ }).click();
-  await p.getByRole("button", { name: "Criar e adicionar" }).click();
+  await p.getByRole("button", { name: "Curtir Beat It" }).first().click();
+  conferir(await espera(async () => (await p.getByText(/foi para Músicas curtidas/).count()) > 0), "curtir mostra aviso");
+  await p.getByRole("button", { name: /Salvar Beat It em uma playlist/ }).first().click();
+  await p.getByRole("button", { name: "Criar playlist" }).click();
   conferir(await espera(async () => (await p.getByText("Dê um nome para a playlist.").count()) > 0), "playlist sem nome mostra erro");
-  await p.getByLabel("Ou crie uma nova playlist").fill("Treino");
-  await p.getByRole("button", { name: "Criar e adicionar" }).click();
+  await p.getByLabel("Nome da playlist").fill("Treino");
+  await p.getByLabel(/Pública/).check();
+  await p.getByRole("button", { name: "Criar playlist" }).click();
   await p.goto(base + "/biblioteca");
   await p.reload();
   conferir(await espera(async () => (await p.getByRole("link", { name: /Treino/ }).count()) === 1), "playlist continua após recarregar");
@@ -92,8 +78,21 @@ function conferir(resultado, nome) {
   conferir(await espera(async () => (await p.getByRole("heading", { name: "Excluir esta playlist?" }).count()) === 1), "excluir pede confirmação");
   await p.getByRole("button", { name: "Manter playlist" }).click();
 
+  await p.goto(base + "/perfil");
+  conferir(await espera(async () => (await p.getByText(/1 playlist · 1 pública/).count()) === 1), "perfil mostra playlists e quantas são públicas");
+  await p.goto(base + "/planos");
+  await p.getByRole("button", { name: "Assinar Duo" }).click();
+  conferir(await espera(async () => (await p.getByRole("heading", { name: /Plano Duo ativado/ }).count()) === 1), "assinar plano leva à tela de sucesso");
+  await p.goto(base + "/suporte");
+  await p.getByRole("button", { name: "Enviar chamado" }).click();
+  conferir(await espera(async () => (await p.getByText("Escolha um assunto.").count()) === 1), "chamado vazio mostra erro");
+  await p.getByLabel("Assunto").selectOption("Conta e login");
+  await p.getByLabel("Descrição").fill("Não consigo trocar minha senha.");
+  await p.getByRole("button", { name: "Enviar chamado" }).click();
+  conferir(await espera(async () => (await p.getByText(/Conta e login/).count()) >= 1), "chamado aberto aparece na lista");
   await p.goto(base + "/configuracoes");
-  await p.getByRole("button", { name: /Usar tema claro/ }).click();
+  conferir(await espera(async () => (await p.getByText("Duo", { exact: true }).count()) >= 1), "configurações mostram o plano atual");
+  await p.getByRole("button", { name: /Mudar para o tema claro|tema claro/i }).first().click();
   await p.reload();
   conferir(await espera(async () => (await p.evaluate(() => document.documentElement.dataset.theme)) === "light"), "tema claro continua após recarregar");
 
@@ -113,7 +112,7 @@ function conferir(resultado, nome) {
   conferir(await espera(async () => (await p.getByRole("heading", { name: "Página não encontrada" }).count()) === 1), "página 404");
 
   await p.setViewportSize({ width: 320, height: 700 });
-  for (const rota of ["/inicio", "/buscar", "/biblioteca", "/configuracoes", "/artista/djavan"]) {
+  for (const rota of ["/inicio", "/buscar", "/biblioteca", "/perfil", "/configuracoes", "/planos", "/suporte", "/artista/djavan"]) {
     await p.goto(base + rota);
     await p.waitForTimeout(400);
     const vaza = await p.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);

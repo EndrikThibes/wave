@@ -14,23 +14,6 @@ const CHAVE_USUARIOS = "wave:usuarios";
 const CHAVE_SESSAO = "wave:sessao";
 const PREFIXO_DADOS = "wave:dados:";
 
-export const ID_VISITANTE = "visitante";
-
-export const VISITANTE = {
-  id: ID_VISITANTE,
-  nome: "Visitante",
-  email: "",
-  generos: [],
-  visitante: true
-};
-
-export const CONTA_DEMO = {
-  nome: "Endrik",
-  email: "demo@wave.com",
-  senha: "Wave1234",
-  generos: ["Pop", "Lo-Fi", "Indie"]
-};
-
 export function pegarUsuarios() {
   return ler(CHAVE_USUARIOS, []);
 }
@@ -41,9 +24,6 @@ export function buscarPorEmail(email) {
 }
 
 export function buscarPorId(id) {
-  if (id === ID_VISITANTE) {
-    return VISITANTE;
-  }
   return pegarUsuarios().find((u) => u.id === id) || null;
 }
 
@@ -56,6 +36,7 @@ export async function criarUsuario(dados) {
     sal: protecao.sal,
     hash: protecao.hash,
     generos: dados.generos,
+    plano: "gratis",
     criadoEm: new Date().toISOString(),
     consentimentoEm: new Date().toISOString()
   };
@@ -138,10 +119,19 @@ export function gravarDadosDoUsuario(id, dados) {
   gravar(PREFIXO_DADOS + id, dados);
 }
 
-export function removerDadosDoUsuario(id) {
-  remover(PREFIXO_DADOS + id);
+export async function trocarSenha(id, senhaAtual, novaSenha) {
+  const usuario = buscarPorId(id);
+  const confere = await conferirSenha(senhaAtual, usuario.sal, usuario.hash);
+  if (!confere) {
+    return false;
+  }
+  const protecao = await protegerSenha(novaSenha);
+  atualizarUsuario(id, { sal: protecao.sal, hash: protecao.hash });
+  return true;
 }
 
-export function temConteudo(dados) {
-  return dados.curtidas.length > 0 || dados.playlists.length > 0 || dados.historico.length > 0;
+export const PREFERENCIAS_PADRAO = { tocarProxima: true, avisarTroca: false, reduzirAnimacoes: false };
+
+export function preferenciasDe(usuario) {
+  return { ...PREFERENCIAS_PADRAO, ...(usuario && usuario.preferencias) };
 }

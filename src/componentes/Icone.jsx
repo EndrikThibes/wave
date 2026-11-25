@@ -102,6 +102,38 @@ const ICONES = {
     </>
   ),
   Clássica: <path d="M3.5 6h17v12h-17zM8 6v7M12 6v7M16 6v7M6.5 13h3M10.5 13h3M14.5 13h3" />,
+  Trap: (
+    <>
+      <path d="M4 7h16M4 12h16M4 17h16" />
+      <path d="M8 4v6M16 9v6M11 14v6" />
+    </>
+  ),
+  "Bossa Nova": (
+    <>
+      <path d="M3 18c4-6 14-6 18 0" />
+      <circle cx="12" cy="8" r="3" />
+      <path d="M12 2v1.5M7 4.5l1 1M17 4.5l-1 1" />
+    </>
+  ),
+  Pagode: (
+    <>
+      <ellipse cx="12" cy="7" rx="7" ry="3" />
+      <path d="M5 7v10c0 1.7 3.1 3 7 3s7-1.3 7-3V7" />
+      <path d="M9 12.5v3M15 12.5v3" />
+    </>
+  ),
+  ajuda: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9.5a2.5 2.5 0 0 1 5 .3c0 1.7-2.5 2-2.5 3.7M12 16.8v.2" />
+    </>
+  ),
+  disco: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="2.5" />
+    </>
+  ),
   Reggae: (
     <>
       <circle cx="12" cy="9" r="4" />
