@@ -4,6 +4,12 @@ const MAPA_FAIXAS = new Map(dados.faixas.map((f) => [f.id, f]));
 const MAPA_ARTISTAS = new Map(dados.artistas.map((a) => [a.id, a]));
 const MAPA_ALBUNS = new Map(dados.albuns.map((a) => [a.id, a]));
 
+dados.artistas.forEach((artista) => {
+  if (!artista.foto.startsWith("http")) {
+    artista.foto = import.meta.env.BASE_URL + artista.foto;
+  }
+});
+
 export const ARTISTAS = dados.artistas;
 export const FAIXAS = dados.faixas;
 export const ALBUNS = dados.albuns;

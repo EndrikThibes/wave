@@ -21,7 +21,7 @@ const artistas = [
   },
   {
     id: "nujabes", nome: "Nujabes", generos: ["Lo-Fi", "Hip Hop"],
-    foto: ITUNES + "Music125/v4/79/7e/a1/797ea11f-b90c-c4c5-f874-6a6ccd2c22a7/HPD5.jpg/500x500bb.jpg",
+    foto: "img/artistas/nujabes.webp",
     bio: "Produtor e DJ japonês que misturou jazz e hip hop em batidas calmas. Suas músicas viraram trilha para estudar, e uma delas abre o anime Samurai Champloo."
   },
   {
@@ -213,6 +213,8 @@ function registrarAlbum(artistaId, nomeAlbum, ano, capa, genero) {
   return { id, titulo };
 }
 
+const FOTOS_LOCAIS = ["matue", "teto", "ferrugem", "sabotage"];
+
 for (const faixa of faixas) {
   const album = registrarAlbum(faixa.artistaId, faixa.album, "", faixa.capa, faixa.genero);
   faixa.albumId = album.id;
@@ -227,7 +229,11 @@ for (const [artistaId, nome, genero, foto, lista] of novos) {
     id: artistaId,
     nome,
     generos: [genero],
-    foto: foto ? WIKI + foto + "/500px-" + arquivo : capaPrincipal + "/600x600bb.jpg",
+    foto: FOTOS_LOCAIS.includes(artistaId)
+      ? "img/artistas/" + artistaId + ".webp"
+      : foto
+        ? WIKI + foto + "/500px-" + arquivo
+        : capaPrincipal + "/600x600bb.jpg",
     bio: bios[artistaId]
   });
   for (const [titulo, nomeAlbum, ano, duracao, capa] of lista) {
