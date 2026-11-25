@@ -28,7 +28,7 @@ export default function Artista() {
         </Link>
       </p>
       <header className="artista-topo">
-        <Imagem src={artista.foto} largura={200} altura={200} className="artista-foto" nome={artista.nome} />
+        <Imagem src={artista.foto} posicao={artista.posicao} largura={200} altura={200} className="artista-foto" nome={artista.nome} />
         <div>
           <p className="rotulo">Artista</p>
           <h1 className="titulo-pagina">{artista.nome}</h1>

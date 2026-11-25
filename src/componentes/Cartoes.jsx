@@ -7,7 +7,7 @@ import { artistaPorId, imagemDaCapa } from "../dados/catalogo.js";
 export function CartaoArtista({ artista }) {
   return (
     <Link to={"/artista/" + artista.id} className="cartao cartao-artista">
-      <Imagem src={artista.foto} largura={200} altura={200} className="cartao-foto" nome={artista.nome} />
+      <Imagem src={artista.foto} posicao={artista.posicao} largura={200} altura={200} className="cartao-foto" nome={artista.nome} />
       <span className="cartao-titulo">{artista.nome}</span>
       <span className="cartao-sub">{artista.generos.join(" · ")}</span>
     </Link>

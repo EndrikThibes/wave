@@ -199,6 +199,7 @@
 
 .cartao-artista .cartao-foto {
   border-radius: 50%;
+  object-position: 50% 25%;
 }
 
 .cartao-titulo {
@@ -382,6 +383,7 @@
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 50% 25%;
   box-shadow: var(--sombra);
 }
 

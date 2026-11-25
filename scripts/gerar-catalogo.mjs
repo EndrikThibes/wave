@@ -213,7 +213,7 @@ function registrarAlbum(artistaId, nomeAlbum, ano, capa, genero) {
   return { id, titulo };
 }
 
-const FOTOS_LOCAIS = ["matue", "teto", "ferrugem", "sabotage"];
+const FOTOS_LOCAIS = ["matue", "teto", "ferrugem", "sabotage", "pericles"];
 
 for (const faixa of faixas) {
   const album = registrarAlbum(faixa.artistaId, faixa.album, "", faixa.capa, faixa.genero);
@@ -254,6 +254,47 @@ for (const [artistaId, nome, genero, foto, lista] of novos) {
       capa: ITUNES + capa,
       video: ids
     });
+  }
+}
+
+const UP = "https://upload.wikimedia.org/wikipedia/commons/";
+const FOTOS_TROCADAS = {
+  "arctic-monkeys": WIKI + "a/a8/Alex_Turner_of_the_Arctic_Monkeys_in_Dallas.jpg/500px-Alex_Turner_of_the_Arctic_Monkeys_in_Dallas.jpg",
+  toquinho: UP + "e/e1/Toquinho_Trova.jpg",
+  "justin-bieber": WIKI + "4/4e/Justin_Bieber_Q_%26_A_%2826511724391%29_%28cropped%29.jpg/500px-Justin_Bieber_Q_%26_A_%2826511724391%29_%28cropped%29.jpg",
+  "mc-livinho": UP + "3/35/MC_Livinho_2022_%282%29.png",
+  "bruno-mars": UP + "3/39/Bruno_Mars_portrait.jpg",
+  "system-of-a-down": WIKI + "3/3e/Serj_Tankian_in_Artsakh_%28cropped%29.jpg/500px-Serj_Tankian_in_Artsakh_%28cropped%29.jpg",
+  "three-days-grace":
+    WIKI +
+    "e/e0/Three_Days_Grace_-_2023155162203_2023-06-04_Rock_am_Ring_-_Sven_-_5DS_R_-_0057_-_5DSR4006.jpg/500px-Three_Days_Grace_-_2023155162203_2023-06-04_Rock_am_Ring_-_Sven_-_5DS_R_-_0057_-_5DSR4006.jpg",
+  radiohead: WIKI + "c/c6/Thom_Yorke_1998.jpg/500px-Thom_Yorke_1998.jpg",
+  racionais: UP + "c/c2/Mano-Brown-7-forum.jpg",
+  "menos-e-mais": WIKI + "c/ca/Menos_%C3%A9_mais_-_foto.jpg/500px-Menos_%C3%A9_mais_-_foto.jpg"
+};
+
+const POSICOES = {
+  "michael-jackson": "50% 8%",
+  "travis-scott": "50% 4%",
+  "mc-livinho": "50% 20%",
+  "justin-bieber": "50% 12%",
+  "luan-santana": "50% 10%",
+  anitta: "50% 12%",
+  "marilia-mendonca": "50% 15%",
+  "ariana-grande": "50% 12%",
+  "sabrina-carpenter": "50% 15%",
+  "lana-del-rey": "50% 10%",
+  "arctic-monkeys": "50% 15%",
+  "system-of-a-down": "50% 15%",
+  djavan: "50% 20%"
+};
+
+for (const artista of artistas) {
+  if (FOTOS_TROCADAS[artista.id]) {
+    artista.foto = FOTOS_TROCADAS[artista.id];
+  }
+  if (POSICOES[artista.id]) {
+    artista.posicao = POSICOES[artista.id];
   }
 }
 

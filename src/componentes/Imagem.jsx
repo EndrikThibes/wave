@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Imagem({ src, alt = "", largura, altura, className = "", nome = "" }) {
+export default function Imagem({ src, alt = "", largura, altura, className = "", nome = "", posicao }) {
   const [falhou, setFalhou] = useState(false);
   const inicial = nome.trim().charAt(0).toUpperCase();
 
@@ -19,6 +19,7 @@ export default function Imagem({ src, alt = "", largura, altura, className = "",
       alt={alt}
       width={largura}
       height={altura}
+      style={posicao ? { objectPosition: posicao } : undefined}
       loading="lazy"
       decoding="async"
       onError={() => setFalhou(true)}
