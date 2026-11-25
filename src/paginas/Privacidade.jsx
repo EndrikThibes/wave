@@ -12,7 +12,7 @@ export default function Privacidade() {
       </a>
       <header className="documento-topo">
         <Link to="/login" className="marca-topo">
-          <img src="/img/wave-logo-pequeno.webp" width="92" height="59" alt="" />
+          <img src={import.meta.env.BASE_URL + "img/wave-logo-pequeno.webp"} width="92" height="59" alt="" />
           Wave
         </Link>
         <BotaoTema />

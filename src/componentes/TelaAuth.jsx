@@ -11,11 +11,11 @@ export default function TelaAuth({ ligacaoTopo, children }) {
       </a>
       <aside className="painel-marca" aria-label="Apresentação do Wave">
         <Link className="marca-topo" to="/login" aria-label="Wave, ir para o início">
-          <img src="/img/wave-logo-pequeno.webp" width="92" height="59" alt="" />
+          <img src={import.meta.env.BASE_URL + "img/wave-logo-pequeno.webp"} width="92" height="59" alt="" />
           Wave
         </Link>
         <div className="marca-texto">
-          <img className="logo-grande" src="/img/wave-logo.webp" width="365" height="233" alt="" />
+          <img className="logo-grande" src={import.meta.env.BASE_URL + "img/wave-logo.webp"} width="365" height="233" alt="" />
           <p className="slogan">
             Sua música, em <em>ondas</em>.
           </p>

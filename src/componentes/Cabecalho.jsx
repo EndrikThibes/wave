@@ -16,7 +16,7 @@ export default function Cabecalho() {
     <header className="cabecalho">
       <div className="cabecalho-interno">
         <Link to="/inicio" className="marca-topo" aria-label="Wave, ir para o início">
-          <img src="/img/wave-logo-pequeno.webp" width="92" height="59" alt="" />
+          <img src={import.meta.env.BASE_URL + "img/wave-logo-pequeno.webp"} width="92" height="59" alt="" />
           <span className="marca-nome">Wave</span>
         </Link>
         <nav className="navegacao" aria-label="Principal">
